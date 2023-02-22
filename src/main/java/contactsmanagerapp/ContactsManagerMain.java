@@ -1,10 +1,23 @@
 package contactsmanagerapp;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ContactsManagerMain {
     public static void main(String[] args) {
+
+        if (Files.notExists(Path.of("/Users/joeyvandzura/IdeaProjects/contacts-manager-micah-joe/src/main/java/contactsmanagerapp/contacts.txt"))) {
+            try {
+                Files.createFile(Path.of("/Users/joeyvandzura/IdeaProjects/contacts-manager-micah-joe/src/main/java/contactsmanagerapp/contacts.txt"));
+            } catch (Exception e) {
+                System.out.println("Could not create contacts.txt.");
+            }
+        } else {
+            System.out.println("contacts.txt file already exists.");
+        }
+
         Scanner scanner = new Scanner(System.in);
         ArrayList<String> contact = new ArrayList<>();
 
@@ -19,6 +32,9 @@ public class ContactsManagerMain {
             while (true) {
                 System.out.println("Please enter the name of the new contact or to exit phone book enter 'Finished': ");
                 String name = scanner.nextLine();
+                if (name.equalsIgnoreCase("finished")) {
+                    break;
+                }
                 //below is the phone #
                 System.out.println("Please enter the phone number of the new contact: ");
                 String phoneNumber = scanner.nextLine();
@@ -28,13 +44,8 @@ public class ContactsManagerMain {
                 // for equality while ignoring their case.
                 //--prompt will continue after this line--
 
-
-                if (name.equalsIgnoreCase("finished")) {
-                    //if string name input is 'finished' the 'break;' will end the loop
-                    break;
-
-                }
             }
+            System.out.println("Goodbye!");
         }
     }
 }

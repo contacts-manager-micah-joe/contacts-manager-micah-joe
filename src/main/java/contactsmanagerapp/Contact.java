@@ -13,8 +13,8 @@ public class Contact {
 
 
 
-    // accessors
 
+    // accessors
 
     public String getName() {
         return name;
