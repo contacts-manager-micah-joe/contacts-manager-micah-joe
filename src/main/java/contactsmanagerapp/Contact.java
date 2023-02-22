@@ -6,13 +6,26 @@ public class Contact {
 
     private int phoneNumber;
 
+    public Contact() {
+    }
     public Contact(String name, int phoneNumber) {
         this.name = name;
         this.phoneNumber = phoneNumber;
     }
 
 
+    public static Contact fromFileString(String fileString) {
+        String[] contactInfo = fileString.split("\\|");
+        Contact contact = new Contact();
+        contact.setName(contactInfo[0]);
+        contact.setPhoneNumber(Integer.parseInt(contactInfo[1]));
+        return contact;
+    }
 
+    @Override
+    public String toString() {
+        return "name: " + name + ", phone number: " + phoneNumber;
+    }
 
     // accessors
 

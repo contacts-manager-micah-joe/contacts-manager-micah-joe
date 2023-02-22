@@ -6,46 +6,51 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ContactsManagerMain {
+
+    private static final Path contactsFile = Path.of("./src/main/java/contactsmanagerapp/contacts.txt");
+
+    private static ArrayList<Contact> contactList = new ArrayList<>();
+
+    private static ArrayList<String> contactFileList;
+
     public static void main(String[] args) {
 
-        if (Files.notExists(Path.of("/Users/joeyvandzura/IdeaProjects/contacts-manager-micah-joe/src/main/java/contactsmanagerapp/contacts.txt"))) {
+        if (Files.notExists(contactsFile)) {
             try {
-                Files.createFile(Path.of("/Users/joeyvandzura/IdeaProjects/contacts-manager-micah-joe/src/main/java/contactsmanagerapp/contacts.txt"));
+                Files.createFile(contactsFile);
             } catch (Exception e) {
                 System.out.println("Could not create contacts.txt.");
             }
-        } else {
-            System.out.println("contacts.txt file already exists.");
         }
 
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<String> contact = new ArrayList<>();
+        updateListOfContacts();
+        displayContacts();
 
-        System.out.println("Please enter your name: ");
-        String user = scanner.nextLine();
-        System.out.println("Hello, " + user + "!");
 
-        System.out.println("Would you like to enter a new contact? (Yes/No)");
-        String newContact = scanner.nextLine();
+        }
 
-        if (newContact.equalsIgnoreCase("yes")) {
-            while (true) {
-                System.out.println("Please enter the name of the new contact or to exit phone book enter 'Finished': ");
-                String name = scanner.nextLine();
-                if (name.equalsIgnoreCase("finished")) {
-                    break;
+        public static void updateListOfContacts() {
+            try {
+                contactFileList = new ArrayList<>(Files.readAllLines(contactsFile));
+                if (contactFileList.size() == 0) {
+                    System.out.println("There are no contacts currently");
+                } else {
+                    System.out.println("List of Contacts:");
+                    for (String element : contactFileList) {
+                        contactList.add(Contact.fromFileString(element));
+                    }
                 }
-                //below is the phone #
-                System.out.println("Please enter the phone number of the new contact: ");
-                String phoneNumber = scanner.nextLine();
-                contact.add(name + " - " + phoneNumber);
-                System.out.println(name + " has been added to your phone book!");
-                //The equalsIgnoreCase() method is used to compare two strings
-                // for equality while ignoring their case.
-                //--prompt will continue after this line--
-
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            System.out.println("Goodbye!");
         }
+
+        public static void displayContacts() {
+            for (Contact contact : contactList) {
+                System.out.println(contact);
+            }
+        }
+
+
+
     }
-}
