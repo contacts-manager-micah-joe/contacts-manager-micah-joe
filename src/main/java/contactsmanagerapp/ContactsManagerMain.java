@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+// test
+
 public class ContactsManagerMain {
 
     private static final Path contactsFile = Path.of("./src/main/java/contactsmanagerapp/contacts.txt");
