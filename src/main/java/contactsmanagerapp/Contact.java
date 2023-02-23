@@ -6,8 +6,6 @@ public class Contact {
 
     private int phoneNumber;
 
-    public Contact() {
-    }
     public Contact(String name, int phoneNumber) {
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -16,15 +14,12 @@ public class Contact {
 
     public static Contact fromFileString(String fileString) {
         String[] contactInfo = fileString.split("\\|");
-        Contact contact = new Contact();
-        contact.setName(contactInfo[0]);
-        contact.setPhoneNumber(Integer.parseInt(contactInfo[1]));
-        return contact;
+        return new Contact(contactInfo[0], Integer.parseInt(contactInfo[1]));
     }
 
     @Override
     public String toString() {
-        return "name: " + name + ", phone number: " + phoneNumber;
+        return "NAME: " + name + ", PHONE NUMBER: " + phoneNumber;
     }
 
     // accessors

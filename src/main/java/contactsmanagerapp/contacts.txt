@@ -1,4 +1,4 @@
-joe vandzura|2107938141
-lorena martinez|2108384936
-matt guardiola|1234567891
+Joe Vandzura|2107938141
+Lorena Martinez|2108384936
+Matt Guardiola|1234567891
 test|123
