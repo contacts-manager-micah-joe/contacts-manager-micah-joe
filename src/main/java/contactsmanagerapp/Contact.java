@@ -19,7 +19,19 @@ public class Contact {
 
     @Override
     public String toString() {
-        return "NAME: " + name + ", PHONE NUMBER: " + phoneNumber;
+        return "NAME: " + name + ", PHONE NUMBER: " + this.phoneNumberStringFormat();
+    }
+
+
+
+    public String phoneNumberStringFormat() {
+        String phoneNumberString = String.valueOf(phoneNumber);
+        return phoneNumberString.substring(0, 3) + "-" + phoneNumberString.substring(3, 6) + "-" + phoneNumberString.substring(6, 10);
+    }
+
+    public String phoneNumberStringFormat(int phoneNumber) {
+        String phoneNumberString = String.valueOf(phoneNumber);
+        return phoneNumberString.substring(0, 3) + "-" + phoneNumberString.substring(3, 6) + "-" + phoneNumberString.substring(6, 10);
     }
 
     // accessors
